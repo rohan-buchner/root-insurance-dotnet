@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RootSDK.Insurance.Models;
 
 namespace RootSDK.Insurance.Services
 {
     public interface IPolicyService
     {
-        PolicyResponse IssuePolicy(string applicationId);
+        Task<PolicyResponse> IssuePolicy(string applicationId);
 
-        PolicyResponse AddPolicyBeneficiary(string policyId, object id, string firstName, string lastName,
+        Task<PolicyResponse> AddPolicyBeneficiary(string policyId, object id, string firstName, string lastName,
             int percentage);
 
-        IList<PolicyResponse> ListPolicies();
+        Task<IList<PolicyResponse>> ListPolicies();
 
-        PolicyResponse GetPolicy(string policyId);
-        PolicyResponse CancelPolicy(string policyId, string reason);
-        PolicyResponse ReplacePolicy(string policyId, string quotePackageId);
-        PolicyResponse UpdatePolicyBillingAmount(string policyId, int billingAmount);
+        Task<PolicyResponse> GetPolicy(string policyId);
+        Task<PolicyResponse> CancelPolicy(string policyId, string reason);
+        Task<PolicyResponse> ReplacePolicy(string policyId, string quotePackageId);
+        Task<PolicyResponse> UpdatePolicyBillingAmount(string policyId, int billingAmount);
 
-        IList<BeneficiaryResponse> ListPolicyBeneficiaries(string policyId);
+        Task<IList<BeneficiaryResponse>> ListPolicyBeneficiaries(string policyId);
     }
 }
